@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/Maity-Enterprice/static/css/main.ca666361.css",
-    "main.js": "/Maity-Enterprice/static/js/main.6e46171b.js",
+    "main.css": "/Maity-Enterprice/static/css/main.5161d648.css",
+    "main.js": "/Maity-Enterprice/static/js/main.ff3ccad9.js",
     "static/js/453.67bde22a.chunk.js": "/Maity-Enterprice/static/js/453.67bde22a.chunk.js",
     "static/media/Maity_Enterprice_logo.jpg": "/Maity-Enterprice/static/media/Maity_Enterprice_logo.f6d0a0d21de2651beda0.jpg",
     "index.html": "/Maity-Enterprice/index.html",
-    "main.ca666361.css.map": "/Maity-Enterprice/static/css/main.ca666361.css.map",
-    "main.6e46171b.js.map": "/Maity-Enterprice/static/js/main.6e46171b.js.map",
+    "main.5161d648.css.map": "/Maity-Enterprice/static/css/main.5161d648.css.map",
+    "main.ff3ccad9.js.map": "/Maity-Enterprice/static/js/main.ff3ccad9.js.map",
     "453.67bde22a.chunk.js.map": "/Maity-Enterprice/static/js/453.67bde22a.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.ca666361.css",
-    "static/js/main.6e46171b.js"
+    "static/css/main.5161d648.css",
+    "static/js/main.ff3ccad9.js"
   ]
 }
