@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import logo from '../../assets/Maity_Enterprice_logo.jpg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faTimes, faHouse, faAddressCard, faAddressBook, faHammer, faMoneyBill } from '@fortawesome/free-solid-svg-icons';
@@ -6,23 +6,70 @@ import { NavLink } from "react-router-dom";
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const sidebarRef = useRef<HTMLDivElement>(null);
+  const elementRef = useRef<HTMLDivElement>(null);
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
   };
 
-  const elementRef = useRef<HTMLDivElement>(null);
+  const [isScrolled, setIsScrolled] = useState(false);
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (sidebarRef.current && !sidebarRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    } else {
+      document.removeEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isOpen]);
+
+   // Handle closing sidebar on scroll if sidebar is open
+   useEffect(() => {
+    const handleScroll = () => {
+      if (isOpen) {
+        setIsOpen(false);  // Close sidebar on scroll
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [isOpen]);
+
 
   return (
-    <nav ref={elementRef} className={`bg-gray-200 border-b-2 border-bg-zinc-200 sticky top-0`} >
+    <nav ref={elementRef} className={`z-10 sticky top-0  ${isScrolled ? 'bg-slate-300 bg-opacity-50' : 'text-white bg-gradient-to-l bg-transparent from-[#6970f0] to-[#4e54c8]'} `} >
       <div className="max-w-full mx-auto px-4 sm:px-4 lg:px-4 ">
         <div className={`flex items-center justify-between h-12 md:h-14 `}>
           
           <div className="flex items-center">
             <div className="flex-shrink-0">
-              {/* <a href="/" className="text-black text-xl font-bold">
-                <img src={logo} alt="Logo" className="h-10 w-10 rounded-full" />
-              </a> */}
               <NavLink to="/Home">
                 <img src={logo} alt="Logo" className="h-10 w-10 rounded-full" />
               </NavLink>
@@ -35,45 +82,30 @@ const Navbar: React.FC = () => {
 
           <div className={`hidden sm:hidden lg:flex md:flex flex-grow flex-row-reverse  w-full `}>
               <NavLink to="/Contact">
-                <button className='"text-black px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-100'>
+                <button className='"text-black px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-100 hover:text-black'>
                 Contact
                 </button>
               </NavLink>
               <NavLink to="/Service">
-                <button className='"text-black px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-100'>
+                <button className='"text-black px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-100 hover:text-black'>
                 Services
                 </button>
               </NavLink>
               <NavLink to="/Plans">
-                <button className='"text-black px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-100'>
+                <button className='"text-black px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-100 hover:text-black'>
                   Plans
                 </button>
               </NavLink>
               <NavLink to="/About">
-                <button className='"text-black px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-100'>
+                <button className='"text-black px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-100 hover:text-black'>
                 About
                 </button>
               </NavLink>
               <NavLink to="/Home">
-                <button className='"text-black px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-100'>
+                <button className='"text-black px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-100 hover:text-black'>
                   Home
                 </button>
               </NavLink>
-
-              {/* <a href="/contact" className="text-black px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-100">
-                Contact
-              </a>
-              <a href="/services" className="text-black px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-100">
-                Services
-              </a>
-              <a href="/about" className="text-black px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-100">
-                About
-              </a>
-              <a href="/" className="text-black px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-100 ">
-                <FontAwesomeIcon icon={faHouse} className='pr-1 text-purple-600' />
-                Home
-              </a> */}
-
           </div>
 
           <div className="flex lg:hidden md:hidden sm:flex">
@@ -88,7 +120,8 @@ const Navbar: React.FC = () => {
 
               {/* Sidebar */}
               <div
-                className={`fixed top-0 right-0 h-full w-1/3 rounded-lg bg-gray-200 bg-opacity-70 border-l-2 border-bg-gray-500 text-white p-0 z-50 transition-transform transform ${isOpen ? "translate-x-0" : "translate-x-full"
+                ref={sidebarRef}
+                className={`fixed top-0 right-0 h-full w-1/3 rounded-lg bg-gray-200 bg-opacity-90 border-l-2 border-bg-gray-500 text-white p-0 z-50 transition-transform transform ${isOpen ? "translate-x-0" : "translate-x-full"
                   }`}
               >
                 {/* Close Button */}
@@ -144,10 +177,6 @@ const Navbar: React.FC = () => {
           </div>
         </div>
       </div>
-      {/* <div className="bg-red-500 sm:bg-blue-500 md:bg-green-500 lg:bg-yellow-500 xl:bg-purple-500">
-        Responsive Box
-      </div> */}
-
     </nav>
   );
 };
