@@ -64,7 +64,7 @@ const Navbar: React.FC = () => {
 
 
   return (
-    <nav ref={elementRef} className={`z-10 sticky top-0  ${isScrolled ? 'bg-slate-300 bg-opacity-50' : 'text-white bg-gradient-to-l bg-transparent from-[#6970f0] to-[#4e54c8]'} `} >
+    <nav ref={elementRef} className={`z-50 sticky top-0  ${isScrolled ? 'bg-slate-300 bg-opacity-50' : 'text-white bg-gradient-to-l bg-transparent from-[#6970f0] to-[#4e54c8]'} `} >
       <div className="max-w-full mx-auto px-4 sm:px-4 lg:px-4 ">
         <div className={`flex items-center justify-between h-12 md:h-14 `}>
           

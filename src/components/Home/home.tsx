@@ -1,6 +1,6 @@
 import React from "react";
 //import { TypeAnimation } from "react-type-animation";
-import TextAninmation from "./textAninmation";
+import TextAnimation from "./textAninmation";
 import { NavLink } from "react-router-dom";
 
 const style=`
@@ -11,7 +11,6 @@ const style=`
 
     body {
         font-family: 'Exo', sans-serif;
-        z-index: -1;
     }
 
     .circles {
@@ -126,10 +125,10 @@ const style=`
 
 const Home: React.FC = () => {
     return (
-        <div className="relative w-full h-screen bg-gradient-to-l z-0 from-[#6970f0] to-[#4e54c8] ">
+        <div className="relative w-full h-screen bg-gradient-to-l from-[#6970f0] to-[#4e54c8] ">
             
-                <div className=" mx-auto px-6 text-center ">
-                  <div className="py-8 sm:py-16 md:py-24 lg:py-40"><TextAninmation name="Maity Enterprise" /></div>
+                <div className="relative mx-auto px-6 text-center z-20 ">
+                  <div className="py-8 sm:py-16 md:py-24 lg:py-40"><TextAnimation name="Maity Enterprise" /></div>
                   <h2 className=" text-md sm:text-lg md:text-xl lg:text-3xl xl:text-5xl text-center font-semibold text-white">
                     Fast, Reliable, and Affordable Broadband Internet
                   </h2>
@@ -137,20 +136,20 @@ const Home: React.FC = () => {
                     Join Maity Enterprise and enjoy seamless internet connectivity for your home or business.
                   </p>
                   <NavLink to="/Plans">
-                  <button className="mt-6 inline-block bg-blue-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-blue-700">
-                    Explore Plans
-                  </button>  
+                    <button className="z-10  mt-6 inline-block bg-blue-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-blue-900">
+                      Explore Plans
+                    </button>  
                   </NavLink>
                 </div>
 
-                <div className=" mx-auto px-6 pt-10">
+                <div className="relative z-20 mx-auto px-6 pt-10">
                   <h3 className="text-sm sm:text-xl md:text-2xl font-semibold text-white text-center mb-12">Why Choose Us</h3>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <div className="bg-white p-6 shadow-md rounded-lg">
                       <h4 className="text-xl font-bold mb-4">High-Speed Internet</h4>
                       <p className="text-gray-600">Enjoy blazing fast internet speeds for all your browsing, streaming, and gaming needs.</p>
                     </div>
-                    <div className="bg-white p-6 shadow-md rounded-lg">
+                    <div className="bg-white p-6 shadow-md rounded-lg ">
                       <h4 className="text-xl font-bold mb-4">Reliable Connection</h4>
                       <p className="text-gray-600">With our robust infrastructure, experience minimal downtime and high reliability.</p>
                     </div>
@@ -163,7 +162,7 @@ const Home: React.FC = () => {
             
 
             <div className="absolute inset-0">
-                <ul className="circles">
+                <ul className="circles z-0">
                     {[...Array(10)].map((_, i) => (
                         <li key={i}></li>
                     ))}
