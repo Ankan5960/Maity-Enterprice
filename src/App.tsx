@@ -1,20 +1,16 @@
 import React from 'react';
 import { createBrowserRouter, Navigate, RouterProvider } from "react-router-dom";
-import Navbar from './components/Navbar-comopnet/Navbar';
-import Home from './components/Home/home';
 import Contact from './components/Contact/contact';
 import Service from './components/Service/service';
 import About from './components/About/about';
 import Plans from './components/Plans/plan';
-import Footer from './components/Footer/footer';
-import AllComponents from './root';
-import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
-
+import Root from './root';
+import { AllComponents } from './allCompontes';
 
 const router=createBrowserRouter([
   {
     path: "/",
-    element: <AllComponents />,
+    element: <Root />,
     children: [
       {
         index: true,
@@ -22,7 +18,7 @@ const router=createBrowserRouter([
       },
       {
         path: "Home",
-        element: <Home />, 
+        element: <AllComponents />, 
       },
       {
         path: "Plans",

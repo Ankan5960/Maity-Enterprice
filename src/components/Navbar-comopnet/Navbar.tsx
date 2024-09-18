@@ -1,8 +1,8 @@
 import React, { useState, useRef } from 'react';
 import logo from '../../assets/Maity_Enterprice_logo.jpg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faTimes, faHouse, faAddressCard, faAddressBook, faHammer } from '@fortawesome/free-solid-svg-icons';
-import { NavLink, Outlet, useNavigate } from "react-router-dom";
+import { faBars, faTimes, faHouse, faAddressCard, faAddressBook, faHammer, faMoneyBill } from '@fortawesome/free-solid-svg-icons';
+import { NavLink } from "react-router-dom";
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -103,26 +103,41 @@ const Navbar: React.FC = () => {
 
 
                 <ul className="text-left ">
-                  <li className='p-2 w-full hover:bg-gray-100'><a href="/" className=" text-neutral-950 rounded-md text-md font-medium ">
+                  <NavLink to="/Home">
+                  <li className='p-2 w-full hover:bg-gray-100'><button className=" text-neutral-950 rounded-md text-md font-medium ">
                     <FontAwesomeIcon icon={faHouse} className='pr-3' />
                     Home
-                  </a>
+                  </button>
                   </li>
-                  <li className='p-2 w-full hover:bg-gray-100'><a href="/about" className=" text-neutral-950  w-full rounded-md text-md font-medium">
+                  </NavLink>
+                  <NavLink to="/About">
+                  <li className='p-2 w-full hover:bg-gray-100'><button className=" text-neutral-950 rounded-md text-md font-medium">
                     <FontAwesomeIcon icon={faAddressCard} className='pr-3' />
                     About
-                  </a>
+                  </button>
                   </li>
-                  <li className='p-2 w-full hover:bg-gray-100'><a href="/services" className=" text-black rounded-md text-md font-medium">
+                  </NavLink>
+                  <NavLink to="/Plans">
+                  <li className='p-2 w-full hover:bg-gray-100'><button className=" text-neutral-950 rounded-md text-md font-medium">
+                    <FontAwesomeIcon icon={faMoneyBill} className='pr-3'/>
+                    Plans
+                  </button>
+                  </li>
+                  </NavLink>
+                  <NavLink to="/Service">
+                  <li className='p-2 w-full hover:bg-gray-100'><button className=" text-black rounded-md text-md font-medium">
                     <FontAwesomeIcon icon={faHammer} className='pr-3 ' />
-                    Services
-                  </a>
+                    Service
+                  </button>
                   </li>
-                  <li className='p-2 w-full hover:bg-gray-100'><a href="/contact" className="text-black rounded-md text-md font-medium ">
+                  </NavLink>
+                  <NavLink to="/Contact">
+                  <li className='p-2 w-full hover:bg-gray-100'><button className="text-black rounded-md text-md font-medium ">
                     <FontAwesomeIcon icon={faAddressBook} className='pr-3' />
                     Contact
-                  </a>
+                  </button>
                   </li>
+                  </NavLink>
                 </ul>
               </div>
             </div>
