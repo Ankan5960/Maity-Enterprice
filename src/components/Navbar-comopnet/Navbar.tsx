@@ -3,7 +3,6 @@ import logo from '../../assets/Maity_Enterprice_logo.jpg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faTimes, faHouse, faAddressCard, faAddressBook, faHammer } from '@fortawesome/free-solid-svg-icons';
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
-import HomeIcon from '../../assets/homeIcon.svg';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,15 +14,18 @@ const Navbar: React.FC = () => {
   const elementRef = useRef<HTMLDivElement>(null);
 
   return (
-    <nav ref={elementRef} className={`bg-gray-200 border-b-2 border-bg-zinc-200`} >
+    <nav ref={elementRef} className={`bg-gray-200 border-b-2 border-bg-zinc-200 sticky top-0`} >
       <div className="max-w-full mx-auto px-4 sm:px-4 lg:px-4 ">
         <div className={`flex items-center justify-between h-12 md:h-14 `}>
           
           <div className="flex items-center">
             <div className="flex-shrink-0">
-              <a href="/" className="text-black text-xl font-bold">
+              {/* <a href="/" className="text-black text-xl font-bold">
                 <img src={logo} alt="Logo" className="h-10 w-10 rounded-full" />
-              </a>
+              </a> */}
+              <NavLink to="/Home">
+                <img src={logo} alt="Logo" className="h-10 w-10 rounded-full" />
+              </NavLink>
             </div>
           </div>
 
@@ -32,21 +34,45 @@ const Navbar: React.FC = () => {
          </div>
 
           <div className={`hidden sm:hidden lg:flex md:flex flex-grow flex-row-reverse  w-full `}>
-            
-              <a href="/contact" className="text-black px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-100">
+              <NavLink to="/Contact">
+                <button className='"text-black px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-100'>
+                Contact
+                </button>
+              </NavLink>
+              <NavLink to="/Service">
+                <button className='"text-black px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-100'>
+                Services
+                </button>
+              </NavLink>
+              <NavLink to="/Plans">
+                <button className='"text-black px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-100'>
+                  Plans
+                </button>
+              </NavLink>
+              <NavLink to="/About">
+                <button className='"text-black px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-100'>
+                About
+                </button>
+              </NavLink>
+              <NavLink to="/Home">
+                <button className='"text-black px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-100'>
+                  Home
+                </button>
+              </NavLink>
+
+              {/* <a href="/contact" className="text-black px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-100">
                 Contact
               </a>
-          
-            <a href="/services" className="text-black px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-100">
-              Services
-            </a>
-            <a href="/about" className="text-black px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-100">
-              About
-            </a>
-            <a href="/" className="text-black px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-100 ">
-              {/* <FontAwesomeIcon icon={faHouse} className='pr-1 text-purple-600' /> */}
-              <p>Home</p>
-            </a>
+              <a href="/services" className="text-black px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-100">
+                Services
+              </a>
+              <a href="/about" className="text-black px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-100">
+                About
+              </a>
+              <a href="/" className="text-black px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-100 ">
+                <FontAwesomeIcon icon={faHouse} className='pr-1 text-purple-600' />
+                Home
+              </a> */}
 
           </div>
 
