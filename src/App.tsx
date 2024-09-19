@@ -1,9 +1,10 @@
 import React from 'react';
 import { createBrowserRouter, Navigate, RouterProvider } from "react-router-dom";
-import Contact from './components/Contact/contact';
-import Service from './components/Service/service';
-import About from './components/About/about';
-import Plans from './components/Plans/plan';
+import About from './components/pages/About/about';
+import Contact from './components/pages/Contact/contact';
+import Plans from './components/pages/Plans/plan';
+import Service from './components/pages/Service/service';
+import MapComponent from './components/pages/Map/mapComponent';
 import Root from './root';
 import { AllComponents } from './allCompontes';
 
@@ -31,6 +32,10 @@ const router=createBrowserRouter([
       {
         path: "Service",
         element: <Service />,
+      },
+      {
+        path: "Map",
+        element: <MapComponent />,
       },
       {
         path: "About",

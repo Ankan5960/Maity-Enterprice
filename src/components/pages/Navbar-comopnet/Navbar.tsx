@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import logo from '../../assets/Maity_Enterprice_logo.jpg';
+import logo from '../../../assets/logo/Maity_Enterprice_logo.jpg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faTimes, faHouse, faAddressCard, faAddressBook, faHammer, faMoneyBill } from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from "react-router-dom";
@@ -77,7 +77,7 @@ const Navbar: React.FC = () => {
           </div>
 
          <div className={`flex items-center justify-center min-w-max px-3 text-sm md:text-lg font-bold font-sans ${isOpen ? 'hidden' : 'block'}`}>
-          Maity Enterprice
+          Maity Enterprise
          </div>
 
           <div className={`hidden sm:hidden lg:flex md:flex flex-grow flex-row-reverse  w-full `}>
@@ -89,6 +89,11 @@ const Navbar: React.FC = () => {
               <NavLink to="/Service">
                 <button className='"text-black px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-100 hover:text-black'>
                 Services
+                </button>
+              </NavLink>
+              <NavLink to="/Map">
+                <button className='"text-black px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-100 hover:text-black'>
+                Map
                 </button>
               </NavLink>
               <NavLink to="/Plans">

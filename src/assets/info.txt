@@ -1,0 +1,6 @@
+google material(new) svg icons
+
+1. weight: 400
+2. grade: 0
+3. optical size: 24
+4. rounded

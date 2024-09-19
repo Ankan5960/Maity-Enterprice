@@ -1,0 +1,194 @@
+{
+    "plans": [
+      {
+        "id": 1,
+        "plan_name": "Fibre 399 CS377",
+        "fixed_monthly_charges": 399,
+        "fup_speed": "2 Mbps",
+        "static_ip": "NA",
+        "bandwidth": "100 Mbps till 4000 GB",
+        "annual_payment_option": "12 Months FMC",
+        "additional_features": "For new customers of WB only. Not for plan change"
+      },
+      {
+        "id": 2,
+        "plan_name": "HOME WiFi / Ghar ka WiFi",
+        "fixed_monthly_charges": 399,
+        "fup_speed": "4 Mbps",
+        "static_ip": "NA",
+        "bandwidth": "50 Mbps till 3300 GB",
+        "annual_payment_option": "12 Months FMC",
+        "additional_features": "For individual category customers only in Rural exchange areas only"
+      },
+      {
+        "id": 3,
+        "plan_name": "Fibre Basic Neo",
+        "fixed_monthly_charges": 449,
+        "fup_speed": "4 Mbps",
+        "static_ip": "NA",
+        "bandwidth": "30 Mbps till 1400 GB",
+        "annual_payment_option": "12 Months FMC",
+        "additional_features": "Free FTTH service for the calendar month in which they are onboarded. Discount of Rs.50/- per month for first 3 months"
+      },
+      {
+        "id": 4,
+        "plan_name": "Fiber Basic",
+        "fixed_monthly_charges": 499,
+        "fup_speed": "4 Mbps",
+        "static_ip": "NA",
+        "bandwidth": "30 Mbps till 1000 GB",
+        "annual_payment_option": "12 Months FMC",
+        "additional_features": "Free FTTH service for the calendar month in which they are onboarded. Discount of Rs.100/- per month for first 3 months"
+      },
+      {
+        "id": 5,
+        "plan_name": "Fibre Basic Plus",
+        "fixed_monthly_charges": 599,
+        "fup_speed": "4 Mbps",
+        "static_ip": "NA",
+        "bandwidth": "125 Mbps till 4000 GB",
+        "annual_payment_option": "12 Months FMC",
+        "additional_features": ""
+      },
+      {
+        "id": 6,
+        "plan_name": "Fibre Basic Super",
+        "fixed_monthly_charges": 699,
+        "fup_speed": "8 Mbps",
+        "static_ip": "NA",
+        "bandwidth": "150 Mbps till 4000 GB",
+        "annual_payment_option": "12 Months FMC",
+        "additional_features": ""
+      },
+      {
+        "id": 7,
+        "plan_name": "Fibre TB",
+        "fixed_monthly_charges": 799,
+        "fup_speed": "10 Mbps",
+        "static_ip": "NA",
+        "bandwidth": "225 Mbps till 6000 GB",
+        "annual_payment_option": "12 Months FMC",
+        "additional_features": ""
+      },
+      {
+        "id": 8,
+        "plan_name": "Fiber Value Plus",
+        "fixed_monthly_charges": 849,
+        "fup_speed": "10 Mbps",
+        "static_ip": "NA",
+        "bandwidth": "250 Mbps till 6000 GB",
+        "annual_payment_option": "12 Months FMC",
+        "additional_features": ""
+      },
+      {
+        "id": 9,
+        "plan_name": "Fibre Premium Plus",
+        "fixed_monthly_charges": 1299,
+        "fup_speed": "15 Mbps",
+        "static_ip": "One @Rs.2000 p.a. additional",
+        "bandwidth": "300 Mbps till 6000 GB",
+        "annual_payment_option": "12 Months FMC",
+        "additional_features": ""
+      },
+      {
+        "id": 10,
+        "plan_name": "Fibre Basic OTT Bundled Disney+Hotstar Super Plan",
+        "fixed_monthly_charges": 599,
+        "fup_speed": "4 Mbps",
+        "static_ip": "NA",
+        "bandwidth": "125 Mbps till 4000 GB",
+        "annual_payment_option": "12 Months FMC",
+        "additional_features": "Bundled with Disney+Hotstar Super Plan"
+      },
+      {
+        "id": 11,
+        "plan_name": "Fibre Basic Plus OTT",
+        "fixed_monthly_charges": 699,
+        "fup_speed": "8 Mbps",
+        "static_ip": "NA",
+        "bandwidth": "150 Mbps till 4000 GB",
+        "annual_payment_option": "12 Months FMC",
+        "additional_features": "Subscriber can opt either of the packs: Pack-1 or Pack-2"
+      },
+      {
+        "id": 12,
+        "plan_name": "Fibre Value OTT",
+        "fixed_monthly_charges": 799,
+        "fup_speed": "10 Mbps",
+        "static_ip": "NA",
+        "bandwidth": "225 Mbps till 6000 GB",
+        "annual_payment_option": "12 Months FMC",
+        "additional_features": "Subscriber can opt any two of the OTT packs: Pack-1, Pack-2, Pack-3"
+      },
+      {
+        "id": 13,
+        "plan_name": "Super Star Premium Plus",
+        "fixed_monthly_charges": 999,
+        "fup_speed": "10 Mbps",
+        "static_ip": "NA",
+        "bandwidth": "250 Mbps till 6000 GB",
+        "annual_payment_option": "12 Months FMC",
+        "additional_features": ""
+      },
+      {
+        "id": 14,
+        "plan_name": "Fibre Premium Plus OTT",
+        "fixed_monthly_charges": 1499,
+        "fup_speed": "15 Mbps",
+        "static_ip": "One @Rs.2000 p.a. additional",
+        "bandwidth": "300 Mbps till 6000 GB",
+        "annual_payment_option": "12 Months FMC",
+        "additional_features": "Bundled with OTT subscription"
+      },
+      {
+        "id": 15,
+        "plan_name": "Fibre Ultra OTT",
+        "fixed_monthly_charges": 1799,
+        "fup_speed": "20 Mbps",
+        "static_ip": "One @Rs.1800 p.a. additional",
+        "bandwidth": "300 Mbps till 6000 GB",
+        "annual_payment_option": "12 Months FMC",
+        "additional_features": ""
+      },
+      {
+        "id": 16,
+        "plan_name": "Half Yearly Committed charges of 1999/- for Home Wifi / Ghar ka Wifi",
+        "fixed_monthly_charges": 1999,
+        "fup_speed": "4 Mbps",
+        "static_ip": "NA",
+        "bandwidth": "50 Mbps till 3300 GB",
+        "annual_payment_option": " Half Yearly",
+        "additional_features": "For individual category New customers of Rural exchange areas"
+      },
+      {
+        "id": 17,
+        "plan_name": "Rural FTTH Voice Unlimited",
+        "fixed_monthly_charges": 249,
+        "fup_speed": "2 Mbps",
+        "static_ip": "NA",
+        "bandwidth": "50 Mbps till 3300 GB",
+        "annual_payment_option": "12 Months FMC",
+        "additional_features": "For new as well as all existing Landline/ADSL broadband customers of Rural areas"
+      },
+      {
+        "id": 18,
+        "plan_name": "FTTH Voice Unlimited",
+        "fixed_monthly_charges": 299,
+        "fup_speed": "2 Mbps",
+        "static_ip": "NA",
+        "bandwidth": "50 Mbps till 3300 GB",
+        "annual_payment_option": "12 Months FMC",
+        "additional_features": "For new as well as all existing Landline/ADSL broadband customers for LL to FTTH conversion"
+      },
+      {
+        "id": 19,
+        "plan_name": "Fibre 999",
+        "fixed_monthly_charges": 999,
+        "fup_speed": "2 Mbps",
+        "static_ip": "NA",
+        "bandwidth": "50 Mbps till 3300 GB",
+        "annual_payment_option": "Half Yearly",
+        "additional_features": "In Rural exchange areas only"
+      }
+    ]
+  }
