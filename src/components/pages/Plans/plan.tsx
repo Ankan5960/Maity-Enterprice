@@ -1,8 +1,5 @@
 import React, { useState } from 'react';
 import plansData from '../../../data/PlansList.json'; // assuming the JSON file is named plans.json
-import ArrowDown from '../../../assets/icons/svg/downArrow.svg';
-import ArrowUp from '../../../assets/icons/svg/upArrow.svg';
-import { NavLink } from "react-router-dom";
 import UpArrowIcon from '../../../assets/icons/up-arrow-icon';
 import DownArrowIcon from '../../../assets/icons/down-arrow-icon';
 

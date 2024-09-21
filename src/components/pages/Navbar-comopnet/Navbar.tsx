@@ -1,7 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
 import logo from '../../../assets/logo/Maity_Enterprice_logo.jpg'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faTimes, faHouse, faAddressCard, faAddressBook, faHammer, faMoneyBill } from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from "react-router-dom";
 
 import HomeIcon from '../../../assets/icons/home-icon';
@@ -10,6 +8,8 @@ import ContactIcon from '../../../assets/icons/contact-icon';
 import MapIcon from '../../../assets/icons/map-icon';
 import ServiceIcon from '../../../assets/icons/service-icon';
 import PlanIcon from '../../../assets/icons/plan-icon';
+import MenuIcon from '../../../assets/icons/menu-icon';
+import CloseIcon from '../../../assets/icons/close-icon';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -89,32 +89,32 @@ const Navbar: React.FC = () => {
 
           <div className={`hidden sm:hidden lg:flex md:flex flex-grow flex-row-reverse  w-full `}>
               <NavLink to="/Contact">
-                <button className="text-black px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-100 hover:text-black">
+                <button className=" px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-100 hover:text-black">
                 Contact
                 </button>
               </NavLink>
               <NavLink to="/Service">
-                <button className="text-black px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-100 hover:text-black">
+                <button className=" px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-100 hover:text-black">
                 Services
                 </button>
               </NavLink>
               <NavLink to="/Map">
-                <button className="text-black px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-100 hover:text-black">
+                <button className=" px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-100 hover:text-black">
                 Map
                 </button>
               </NavLink>
               <NavLink to="/Plans">
-                <button className="text-black px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-100 hover:text-black">
+                <button className=" px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-100 hover:text-black">
                   Plans
                 </button>
               </NavLink>
               <NavLink to="/About">
-                <button className="text-black px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-100 hover:text-black">
+                <button className=" px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-100 hover:text-black">
                 About
                 </button>
               </NavLink>
               <NavLink to="/Home">
-                <button className="flex text-black px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-100 hover:text-black">
+                <button className="flex  px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-100 hover:text-black">
                   <p className="ml-1">Home</p>
                 </button>
               </NavLink>
@@ -125,9 +125,9 @@ const Navbar: React.FC = () => {
               {/* Toggle Button */}
               <button
                 onClick={toggleSidebar}
-                className="flex top-2 right-5 p-3 bg-gray-200  text-black hover:bg-gray-100 rounded"
+                className="flex top-2 right-5 p-3 bg-transparent  text-white hover:bg-gray-100 hover:text-black rounded"
               >
-                {isOpen ? null : <FontAwesomeIcon icon={faBars} />}
+                {isOpen ? null : <MenuIcon className="h-5 w-5 fill-white hover:fill-black" />}
               </button>
 
               {/* Sidebar */}
@@ -142,7 +142,7 @@ const Navbar: React.FC = () => {
                     onClick={toggleSidebar}
                     className=" top-4 left-4 w-6 h-6  items-center bg-rose-400 hover:bg-red-700 rounded"
                   >
-                    <FontAwesomeIcon icon={faTimes} />
+                    <CloseIcon className="h-5 w-5 mx-auto" />
                   </button>
                 </div>
 
