@@ -4,6 +4,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faTimes, faHouse, faAddressCard, faAddressBook, faHammer, faMoneyBill } from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from "react-router-dom";
 
+import HomeIcon from '../../../assets/icons/home-icon';
+import AboutIcon from '../../../assets/icons/about-icon';
+import ContactIcon from '../../../assets/icons/contact-icon';
+import MapIcon from '../../../assets/icons/map-icon';
+import ServiceIcon from '../../../assets/icons/service-icon';
+import PlanIcon from '../../../assets/icons/plan-icon';
+
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const sidebarRef = useRef<HTMLDivElement>(null);
@@ -82,33 +89,33 @@ const Navbar: React.FC = () => {
 
           <div className={`hidden sm:hidden lg:flex md:flex flex-grow flex-row-reverse  w-full `}>
               <NavLink to="/Contact">
-                <button className='"text-black px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-100 hover:text-black'>
+                <button className="text-black px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-100 hover:text-black">
                 Contact
                 </button>
               </NavLink>
               <NavLink to="/Service">
-                <button className='"text-black px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-100 hover:text-black'>
+                <button className="text-black px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-100 hover:text-black">
                 Services
                 </button>
               </NavLink>
               <NavLink to="/Map">
-                <button className='"text-black px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-100 hover:text-black'>
+                <button className="text-black px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-100 hover:text-black">
                 Map
                 </button>
               </NavLink>
               <NavLink to="/Plans">
-                <button className='"text-black px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-100 hover:text-black'>
+                <button className="text-black px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-100 hover:text-black">
                   Plans
                 </button>
               </NavLink>
               <NavLink to="/About">
-                <button className='"text-black px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-100 hover:text-black'>
+                <button className="text-black px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-100 hover:text-black">
                 About
                 </button>
               </NavLink>
               <NavLink to="/Home">
-                <button className='"text-black px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-100 hover:text-black'>
-                  Home
+                <button className="flex text-black px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-100 hover:text-black">
+                  <p className="ml-1">Home</p>
                 </button>
               </NavLink>
           </div>
@@ -142,37 +149,44 @@ const Navbar: React.FC = () => {
 
                 <ul className="text-left ">
                   <NavLink to="/Home">
-                  <li className='p-2 w-full hover:bg-gray-100'><button className=" text-neutral-950 rounded-md text-md font-medium ">
-                    <FontAwesomeIcon icon={faHouse} className='pr-3' />
-                    Home
+                  <li className='p-2 w-full hover:bg-gray-100'><button className="flex text-neutral-950 rounded-md text-md font-medium ">
+                    <HomeIcon className='h-5 w-5' />
+                    <p className="ml-1">Home</p>
                   </button>
                   </li>
                   </NavLink>
                   <NavLink to="/About">
-                  <li className='p-2 w-full hover:bg-gray-100'><button className=" text-neutral-950 rounded-md text-md font-medium">
-                    <FontAwesomeIcon icon={faAddressCard} className='pr-3' />
-                    About
+                  <li className='p-2 w-full hover:bg-gray-100'><button className="flex text-neutral-950 rounded-md text-md font-medium">
+                    <AboutIcon className='h-5 w-5' />
+                    <p className="ml-1">About</p>
                   </button>
                   </li>
                   </NavLink>
                   <NavLink to="/Plans">
-                  <li className='p-2 w-full hover:bg-gray-100'><button className=" text-neutral-950 rounded-md text-md font-medium">
-                    <FontAwesomeIcon icon={faMoneyBill} className='pr-3'/>
-                    Plans
+                  <li className='p-2 w-full hover:bg-gray-100'><button className="flex text-neutral-950 rounded-md text-md font-medium">
+                    <PlanIcon className='h-5 w-5' />
+                    <p className="ml-1">Plans</p>
+                  </button>
+                  </li>
+                  </NavLink>
+                  <NavLink to="/Map">
+                  <li className='p-2 w-full hover:bg-gray-100'><button className="flex text-black rounded-md text-md font-medium">
+                    <MapIcon className='h-5 w-5' />
+                    <p className="ml-1">Map</p>
                   </button>
                   </li>
                   </NavLink>
                   <NavLink to="/Service">
-                  <li className='p-2 w-full hover:bg-gray-100'><button className=" text-black rounded-md text-md font-medium">
-                    <FontAwesomeIcon icon={faHammer} className='pr-3 ' />
-                    Service
+                  <li className='p-2 w-full hover:bg-gray-100'><button className="flex text-black rounded-md text-md font-medium">
+                    <ServiceIcon className='h-5 w-5' />
+                    <p className="ml-1">Services</p>
                   </button>
                   </li>
                   </NavLink>
                   <NavLink to="/Contact">
-                  <li className='p-2 w-full hover:bg-gray-100'><button className="text-black rounded-md text-md font-medium ">
-                    <FontAwesomeIcon icon={faAddressBook} className='pr-3' />
-                    Contact
+                  <li className='p-2 w-full hover:bg-gray-100'><button className="flex text-black rounded-md text-md font-medium ">
+                    <ContactIcon className='h-5 w-5' />
+                    <p className="ml-1">Contact</p>
                   </button>
                   </li>
                   </NavLink>

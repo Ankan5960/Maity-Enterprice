@@ -1,5 +1,5 @@
-import React from 'react';
-import { MapContainer, TileLayer, Marker, Popup, Polyline } from 'react-leaflet';
+import React,{useState,useRef, useEffect} from 'react';
+import { MapContainer, TileLayer, Marker, Popup, Polyline, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L, { LatLngTuple } from 'leaflet';
 
@@ -31,9 +31,14 @@ const cableRoutes: LatLngTuple[][] = [
 ];
 
 const MapComponent: React.FC = () => {
+  const [mapClicked, setMapClicked] = useState(false);
+  const mapRef= useRef(null)
+
   return (
     <div className="w-full h-full py-4 px-2 relative">
-      <div className='absolute top-10 left-0 w-full h-10 bg-transparent text-white font-semibold z-10 text-center text-3xl '>Active Users</div>
+      <div className='absolute top-20 left-0 w-full  h-10 bg-transparent text-white font-semibold z-10 text-center text-3xl '>
+        Active Users
+      </div>
       <MapContainer
         center={[22.88046552762111, 87.30577340556309]} // Center on your village coordinates
         zoom={17} // Default zoom level

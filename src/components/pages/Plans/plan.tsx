@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import plansData from '../../../data/PlansList.json'; // assuming the JSON file is named plans.json
 import ArrowDown from '../../../assets/icons/svg/downArrow.svg';
 import ArrowUp from '../../../assets/icons/svg/upArrow.svg';
+import { NavLink } from "react-router-dom";
+import UpArrowIcon from '../../../assets/icons/up-arrow-icon';
+import DownArrowIcon from '../../../assets/icons/down-arrow-icon';
 
 const Plans: React.FC = () => {
   const [showAllPlans, setShowAllPlans] = useState(false);
@@ -29,7 +32,8 @@ const Plans: React.FC = () => {
               className="bg-transparent text-black font-bold py-2 px-4 rounded justify-center items-center"
               onClick={() => setShowAllPlans(!showAllPlans)}
             >
-              <img src={showAllPlans ? ArrowUp : ArrowDown} alt="ArrowDown" className="ml-2" />
+              {/* <img src={showAllPlans ? ArrowUp : ArrowDown} alt="ArrowDown" className="ml-2" /> */}
+              {showAllPlans ? <UpArrowIcon className='w-10 h-10 fill-black' /> : <DownArrowIcon className='w-10 h-10 fill-black'/>}
             </button>
           </div>
         </div>
