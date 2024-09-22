@@ -127,7 +127,7 @@ const Navbar: React.FC = () => {
                 onClick={toggleSidebar}
                 className="flex top-2 right-5 p-3 bg-transparent  text-white hover:bg-gray-100 hover:text-black rounded"
               >
-                {isOpen ? null : <MenuIcon className="h-5 w-5 fill-white hover:fill-black" />}
+                {isOpen ? null : <MenuIcon className={`h-5 w-5 hover:fill-black ${isScrolled? 'fill-black' : 'fill-white'}`} />}
               </button>
 
               {/* Sidebar */}
