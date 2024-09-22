@@ -1,6 +1,6 @@
 import { IIconProp } from "./models/IIconProp";
 
-const AboutIcon: React.FC<IIconProp> = ({ className }) => {
+const MapIcon: React.FC<IIconProp> = ({ className }) => {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -11,4 +11,4 @@ const AboutIcon: React.FC<IIconProp> = ({ className }) => {
         </svg>);
 };
 
-export default AboutIcon;
+export default MapIcon;

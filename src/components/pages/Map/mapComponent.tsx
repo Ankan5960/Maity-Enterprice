@@ -1,7 +1,9 @@
-import React,{useState,useRef, useEffect} from 'react';
-import { MapContainer, TileLayer, Marker, Popup, Polyline, useMap } from 'react-leaflet';
+import React, { useRef } from 'react';
+import { MapContainer, TileLayer, Marker, Popup, Polyline } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
-import L, { LatLngTuple } from 'leaflet';
+import L from 'leaflet';
+import MainCableRoutes from './main-cable-route';
+import { userLocations, UsertoMainCableRoutes } from './user-location';
 
 // Custom icon for user location
 const userIcon = new L.Icon({
@@ -11,28 +13,42 @@ const userIcon = new L.Icon({
   popupAnchor: [-2, -25], // Popup anchor: [0, -41] ensures the popup appears right above the marker icon
 });
 
-// Define user locations with explicit LatLngTuple type
-const userLocations: { id: number; name: string; coordinates: LatLngTuple }[] = [
-  { id: 1, name: 'Sahil Chowdhury', coordinates: [22.88178894801033, 87.30585855506881] },
-  { id: 2, name: 'Sukalyan Kundu', coordinates: [22.881159855852193, 87.30124837537014] },
-  { id: 3, name: 'Tarak De', coordinates: [22.881646332775674, 87.30322784872384] },
-  { id: 4, name: 'Ankan Maity', coordinates: [22.881073423800906, 87.30612270304695] },
-  { id: 5, name: 'Sarbani Dutta', coordinates: [22.879014404984066, 87.30432066086448] },
-  //{ id: 6, name: 'DR SUKANTA MANNA', coordinates: [22.881084, 87.306142] },
-  { id: 7, name: 'Santanu Roy', coordinates: [22.88065212598115, 87.30647193729283] },
-  { id: 8, name: 'WEBEL AMARSHI SC', coordinates: [22.881649519741064, 87.30394784112461] },
-  { id: 9, name: 'WEBEL Nohari High School', coordinates: [22.881495, 87.305783] },
-  { id: 10, name: 'Shankha Bhattachary', coordinates: [22.87816900543782, 87.30567071453888] },
-];
+// const LocateUser: React.FC<{ setUserLocation: (coords: LatLngTuple) => void }> = ({ setUserLocation }) => {
+//   const map = useMap();
 
-// Define cable routes with LatLngTuple type for the array of coordinate pairs
-const cableRoutes: LatLngTuple[][] = [
-  //[[22.87816900543782, 87.30567071453888],[22.879014404984066, 87.30432066086448]], // Array of LatLngTuple pairs
-];
+//   const handleLocateClick = () => {
+//     if (navigator.geolocation) {
+//       navigator.geolocation.getCurrentPosition(
+//         (position) => {
+//           const { latitude, longitude } = position.coords;
+//           const userCoords: LatLngTuple = [latitude, longitude];
+
+//           // Set map view to user's location
+//           map.flyTo(userCoords, 17); // Fly to the user's location with zoom level 17
+//           setUserLocation(userCoords);
+//         },
+//         () => {
+//           alert('Unable to retrieve your location');
+//         }
+//       );
+//     } else {
+//       alert('Geolocation is not supported by your browser');
+//     }
+//   };
+
+//   return (
+//     <button
+//       className="absolute top-24 right-4 z-10 bg-transparent text-white py-2 px-4 rounded-md shadow-md"
+//       onClick={handleLocateClick}
+//     >
+//       My Location
+//     </button>
+//   );
+// };
 
 const MapComponent: React.FC = () => {
-  const [mapClicked, setMapClicked] = useState(false);
-  const mapRef= useRef(null)
+  ///const [userLocation, setUserLocation] = useState<LatLngTuple | null>(null);
+  const mapRef = useRef(null)
 
   return (
     <div className="w-full h-full py-4 px-2 relative">
@@ -40,6 +56,7 @@ const MapComponent: React.FC = () => {
         Active Users
       </div>
       <MapContainer
+        ref={mapRef}
         center={[22.88046552762111, 87.30577340556309]} // Center on your village coordinates
         zoom={17} // Default zoom level
         minZoom={13} // Minimum zoom level
@@ -48,7 +65,7 @@ const MapComponent: React.FC = () => {
         scrollWheelZoom={false} // Enable zooming with the scroll wheel
         doubleClickZoom={false} // Disable zooming with double-click
         zoomControl={true} // Keep zoom controls visible
-        style={{ height: '700px', width: '100%' ,zIndex: 0}}
+        style={{ height: '700px', width: '100%', zIndex: 0 }}
       >
         {/* Tile Layer for the map */}
         <TileLayer
@@ -64,9 +81,22 @@ const MapComponent: React.FC = () => {
         ))}
 
         {/* Polyline for cable routes */}
-        {cableRoutes.map((route, index) => (
+        {MainCableRoutes.map((route, index) => (
+          <Polyline key={index} positions={route} color="red" />
+        ))}
+
+        {UsertoMainCableRoutes.map((route, index) => (
           <Polyline key={index} positions={route} color="blue" />
         ))}
+
+        {/* {userLocation && (
+          <Marker position={userLocation} icon={userIcon}>
+            <Popup>Your Location</Popup>
+          </Marker>
+        )} */}
+
+        {/* Locate Me Button */}
+        {/* <LocateUser setUserLocation={setUserLocation} /> */}
       </MapContainer>
     </div>
   );
