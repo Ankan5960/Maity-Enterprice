@@ -6,7 +6,7 @@ import CloseIcon from '../../assets/icons/close-icon';
 
 interface AlertBoxProps {
   message: string;
-  type: 'success' | 'error';
+  type: 'success' | 'error' | 'waiting';
   onClose: () => void;
 }
 
@@ -33,11 +33,10 @@ const AlertBox: React.FC<AlertBoxProps> = ({ message, type, onClose }) => {
     <CSSTransition in={show} timeout={300} classNames="alert" unmountOnExit>
       <div>
         <div
-          className={`fixed bottom-3 border-2 ${type === 'success' ? 'border-green-600' : 'border-red-600'} left-1/2 transform -translate-x-1/2 p-4 rounded-lg shadow-lg w-full max-w-sm ${
-            type === 'success' ? 'bg-green-500' : 'bg-red-500'
-          } text-white text-center justify-between items-center`}
+          className={`fixed bottom-3 border-2 bg-opacity-40 ${type === 'success' ? 'border-green-300' : ''} ${type === 'error' ? 'border-red-300' : ''} ${type === 'waiting' ? 'border-yellow-300' : ''} left-1/2 transform -translate-x-1/2 p-4 rounded-lg shadow-lg w-full max-w-sm ${
+            type === 'success' ? 'bg-green-500' : ''} ${type === 'error' ? 'bg-red-500' : ''} ${type === 'waiting' ? 'bg-yellow-500' : ''} text-gray-600 text-center justify-between items-center`}
         >
-          <span>{message}</span>
+          <span >{message}</span>
           <button 
             className="absolute top-2 right-2 text-white hover:text-gray-200"            
             onClick={handleClose}

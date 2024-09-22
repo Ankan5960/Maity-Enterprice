@@ -125,7 +125,7 @@ const style=`
 
 const Home: React.FC = () => {
     return (
-        <div className="relative w-full h-screen bg-gradient-to-l from-[#6970f0] to-[#4e54c8] ">
+        <div className="relative w-full h-auto bg-gradient-to-l from-[#6970f0] to-[#4e54c8] ">
             
                 <div className="relative mx-auto px-6 text-center z-20 ">
                   <div className="py-8 sm:py-16 md:py-24 lg:py-40"><TextAnimation name="Maity Enterprise" /></div>
@@ -142,7 +142,7 @@ const Home: React.FC = () => {
                   </NavLink>
                 </div>
 
-                <div className="relative z-20 mx-auto px-6 pt-10">
+                <div className="relative z-20 mx-auto px-6 py-10">
                   <h3 className="text-sm sm:text-xl md:text-2xl font-semibold text-white text-center mb-12">Why Choose Us</h3>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <div className="bg-white p-6 shadow-md rounded-lg">

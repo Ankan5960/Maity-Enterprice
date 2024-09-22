@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useEffect, useState} from 'react';
 import emailjs from 'emailjs-com';
 import AlertBox from '../../Alert-box/alert-box-component';
 
@@ -7,9 +7,29 @@ const Contact: React.FC = () => {
   const[email,setEmail]=useState("");
   const [name,setName]=useState("");
   const [message,setMessage]=useState("");
-  const [alert, setAlert] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
+  const [alert, setAlert] = useState<{ message: string; type: 'success' | 'error' | 'waiting' } | null>(null);
+  const [waitText, setWaitText] = useState('Wait.');
 
-  const showAlert = (message: string, type: 'success' | 'error') => {
+  const userId=process.env.REACT_APP_EMAILJS_API_KEY;
+ 
+  useEffect(() => {
+    let interval: NodeJS.Timeout;
+
+    if (alert?.type === 'waiting') {
+      interval = setInterval(() => {
+        setWaitText((prev) => {
+          if (prev === 'Wait.') return 'Wait..';
+          if (prev === 'Wait..') return 'Wait...';
+          if (prev === 'Wait...') return 'Wait....';
+          return 'Wait.';
+        });
+      }, 500); // Change every half second
+    }
+
+    return () => clearInterval(interval); // Clear interval when component unmounts or alert changes
+  }, [alert]);
+  
+  const showAlert = (message: string, type: 'success' | 'error' | 'waiting') => {
     setAlert({ message, type });
   };
 
@@ -36,14 +56,16 @@ const Contact: React.FC = () => {
       email, // The customer will receive the auto-reply here
     };
 
+    showAlert('Wait....', 'waiting');
+
     emailjs
-      .send('service_fjlab6h','template_l3d7eqc',templateParams,'hGdl1VqvqIJ-KRwdQ')
+      .send('service_fjlab6h','template_l3d7eqc',templateParams,userId)
       .then(
         (response)=>{
           console.log('SUCCESS!', response.status, response.text);
           showAlert('Message sent successfully!', 'success');
           emailjs
-            .send('service_fjlab6h', 'template_y1fgpx3', autoReplyParams, 'hGdl1VqvqIJ-KRwdQ')
+            .send('service_fjlab6h', 'template_y1fgpx3', autoReplyParams,userId)
             .then(
               (autoResponse) => {
                 console.log('Auto-reply sent successfully!', autoResponse.status, autoResponse.text);
@@ -99,7 +121,13 @@ const Contact: React.FC = () => {
           </div>
           <button type="submit" className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">Send</button>
         </form>
-        {alert && <AlertBox message={alert.message} type={alert.type} onClose={closeAlert} />}
+        {alert && (
+          <AlertBox
+            message={alert.type === 'waiting' ? waitText : alert.message}
+            type={alert.type}
+            onClose={closeAlert}
+          />
+        )}
       </div>
     </section>
   );
