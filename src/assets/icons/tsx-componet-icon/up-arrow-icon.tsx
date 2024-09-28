@@ -1,4 +1,4 @@
-import { IIconProp } from "./models/IIconProp";
+import { IIconProp } from "../models/IIconProp";
 
 const UpArrowIcon: React.FC<IIconProp> = ({ className }) => {
     return (

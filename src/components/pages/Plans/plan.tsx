@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import plansData from '../../../data/PlansList.json'; // assuming the JSON file is named plans.json
-import UpArrowIcon from '../../../assets/icons/up-arrow-icon';
-import DownArrowIcon from '../../../assets/icons/down-arrow-icon';
+import UpArrowIcon from '../../../assets/icons/tsx-componet-icon/up-arrow-icon';
+import DownArrowIcon from '../../../assets/icons/tsx-componet-icon/down-arrow-icon';
 
 const Plans: React.FC = () => {
   const [showAllPlans, setShowAllPlans] = useState(false);

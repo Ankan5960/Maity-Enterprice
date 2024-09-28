@@ -1,15 +1,15 @@
 import React, { useState, useRef, useEffect } from 'react';
-import logo from '../../../assets/logo/Maity_Enterprice_logo.jpg'
+import logo from '../../assets/logo/Maity_Enterprice_logo.jpg';
 import { NavLink } from "react-router-dom";
 
-import HomeIcon from '../../../assets/icons/home-icon';
-import AboutIcon from '../../../assets/icons/about-icon';
-import ContactIcon from '../../../assets/icons/contact-icon';
-import MapIcon from '../../../assets/icons/map-icon';
-import ServiceIcon from '../../../assets/icons/service-icon';
-import PlanIcon from '../../../assets/icons/plan-icon';
-import MenuIcon from '../../../assets/icons/menu-icon';
-import CloseIcon from '../../../assets/icons/close-icon';
+import HomeIcon from '../../assets/icons/tsx-componet-icon/home-icon';
+import AboutIcon from '../../assets/icons/tsx-componet-icon/about-icon';
+import ContactIcon from '../../assets/icons/tsx-componet-icon/contact-icon';
+import MapIcon from '../../assets/icons/tsx-componet-icon/map-icon';
+import ServiceIcon from '../../assets/icons/tsx-componet-icon/service-icon';
+import PlanIcon from '../../assets/icons/tsx-componet-icon/plan-icon';
+import MenuIcon from '../../assets/icons/tsx-componet-icon/menu-icon';
+import CloseIcon from '../../assets/icons/tsx-componet-icon/close-icon';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -71,8 +71,8 @@ const Navbar: React.FC = () => {
 
 
   return (
-    <nav ref={elementRef} className={`z-50 sticky top-0  ${isScrolled ? 'bg-slate-300 bg-opacity-50' : 'text-white bg-gradient-to-l bg-transparent from-[#6970f0] to-[#4e54c8]'} `} >
-      <div className="max-w-full mx-auto px-4 sm:px-4 lg:px-4 ">
+    <nav ref={elementRef} className={`z-50 sticky top-0  ${isScrolled ? 'bg-slate-300 bg-opacity-50 backdrop-blur-md' : 'text-white bg-gradient-to-l bg-transparent from-[#6970f0] to-[#4e54c8]'} `} >
+      <div className="max-w-full mx-auto px-4  ">
         <div className={`flex items-center justify-between h-12 md:h-14 `}>
           
           <div className="flex items-center">

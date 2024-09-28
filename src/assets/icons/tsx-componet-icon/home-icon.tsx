@@ -1,4 +1,4 @@
-import { IIconProp } from "./models/IIconProp";
+import { IIconProp } from "../models/IIconProp";
 
 const HomeIcon: React.FC<IIconProp> = ({ className }) => {
   return (

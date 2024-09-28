@@ -1,6 +1,7 @@
 import { LatLngTuple } from "leaflet";
+import { SplitterLocations } from "./splitter-location";
 
-let MainCableRoutes: LatLngTuple[][] = [[[22.881411340788357, 87.30668445959105], [22.88147696899644, 87.30617091450776]]];
+export const MainCableRoutes: LatLngTuple[][] = [[[22.881411340788357, 87.30668445959105], [22.88147696899644, 87.30617091450776]]];
 
 let last_point: LatLngTuple = MainCableRoutes[MainCableRoutes.length - 1][1];
 
@@ -28,5 +29,8 @@ push(22.88146401102088, 87.30147524309562);
 
 //Main road to Sarbani Dutta & Shankha bhattacharya
 MainCableRoutes.push([[22.88123587732262, 87.30481635971273], [22.879024511243347, 87.30432024256956]]);
+SplitterLocations.push([22.879024511243347, 87.30432024256956]);
 MainCableRoutes.push([[22.879024511243347, 87.30432024256956], [22.878796447985575, 87.30512262100699]]);
+SplitterLocations.push([22.878796447985575, 87.30512262100699]);
 MainCableRoutes.push([[22.878796447985575, 87.30512262100699], [22.878565150612104, 87.3056704249428]]);
+SplitterLocations.push([22.878565150612104, 87.3056704249428]);
