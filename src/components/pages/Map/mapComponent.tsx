@@ -84,7 +84,7 @@ const LocateUser: React.FC<{ setMyLocation: (coords: LatLngTuple) => void }> = (
       className="bg-transparent bg-slate-100 text-black hover:bg-slate-300 p-1 rounded-md shadow-md"
       onClick={handleLocateClick}
     >
-      <MyLocationIcon className="w-7 h-7 fill-black" />
+      <MyLocationIcon className="w-7 h-7 fill-blue-600" />
     </button>
   );
 };
