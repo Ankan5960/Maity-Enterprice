@@ -9,8 +9,10 @@ import { SplitterLocations } from './logics/splitter-location';
 import locationBlue from '../../../assets/icons/Png/locationBlue.png';
 import locationRed from '../../../assets/icons/Png/locationRed1.png';
 import splittericon from '../../../assets/icons/Png/splliter1.png';
+import myLocationDot from '../../../assets/icons/Png/myLocation.png';
 import MyLocationicon from '../../../assets/icons/tsx-componet-icon/my-location-icon';
 import HomeIcon from '../../../assets/icons/tsx-componet-icon/home-icon';
+import AlertBox from '../../Alert-box/alert-box-component';
 
 // Custom icon for user location
 const userIcon = new L.Icon({
@@ -49,6 +51,8 @@ const LocateUser: React.FC<{ setMyLocation: (coords: LatLngTuple) => void }> = (
   const maxLat = 22.884064170207083;
   const minLng = 87.29902289902364;
   const maxLng = 87.31088506702115;
+  const [errorAlertMessage, setErrorAlertMessage] = useState<string | null>(null);
+  const [successAlertMessage, setSuccessAlertMessage] = useState<string | null>(null);
 
   const handleLocateClick = () => {
     if (navigator.geolocation) {
@@ -57,49 +61,52 @@ const LocateUser: React.FC<{ setMyLocation: (coords: LatLngTuple) => void }> = (
           const { latitude, longitude } = position.coords;
           const userCoords: LatLngTuple = [latitude, longitude];
 
+          map.flyTo(userCoords, 17);
+          setMyLocation(userCoords);
+
           // Check if the user's location is within the defined area
           if (
-            // latitude >= minLat &&
-            // latitude <= maxLat &&
-            // longitude >= minLng &&
-            // longitude <= maxLng
-            true
+            latitude >= minLat &&
+            latitude <= maxLat &&
+            longitude >= minLng &&
+            longitude <= maxLng
           ) {
-            // Set map view to user's location and zoom level 17
-            map.flyTo(userCoords, 17);
-            setMyLocation(userCoords);
+            setErrorAlertMessage(null); // Reset alert message if within bounds
+            setSuccessAlertMessage('Your location is within the specified area'); // Show the alert box
           } else {
-            alert('Your location is outside the specified area');
+            setErrorAlertMessage('Your location is outside the specified area'); // Show the alert box
           }
         },
         () => {
-          alert('Unable to retrieve your location');
+          setErrorAlertMessage('Unable to retrieve your location'); // Show error if location cannot be retrieved
         },
         {
           enableHighAccuracy: true, // Request more accurate location
-          timeout: 5000,             // Optional: Set a timeout for the request
-          maximumAge: 0              // Optional: Don't use cached position
+          timeout: 5000,            // Optional: Set a timeout for the request
+          maximumAge: 0             // Optional: Don't use cached position
         }
       );
     } else {
-      alert('Geolocation is not supported by your browser');
+      setErrorAlertMessage('Geolocation is not supported by your browser'); // Show error if Geolocation is not supported
     }
   };
 
   return (
     <>
+    {errorAlertMessage && <AlertBox message={errorAlertMessage} type='error' onClose={() => setErrorAlertMessage(null)}/>}
+    {successAlertMessage && <AlertBox message={successAlertMessage} type='success' onClose={() => setSuccessAlertMessage(null)}/>}
       <button
         className="bg-transparent bg-slate-100 text-black hover:bg-slate-300 p-1 rounded-md shadow-md"
         onClick={handleLocateClick}
       >
         <MyLocationicon className="w-7 h-7 fill-blue-600" />
       </button>
-      {/* <button
+      <button
         className="bg-transparent bg-slate-100 text-black hover:bg-slate-300 p-1 rounded-md shadow-md"
         onClick={() => map.flyTo([22.88046552762111, 87.30577340556309], 17)}
       >
         <HomeIcon className="w-7 h-7 fill-blue-600" />
-      </button> */}
+      </button>
     </>
     
   );
@@ -114,9 +121,9 @@ const MapComponent: React.FC = () => {
 
   return (
     <div className="w-full h-full py-4 px-2 relative ">
-      <div className='absolute top-20 left-0 w-full  h-10 bg-transparent text-white font-semibold z-10 text-center text-3xl '>
+      {/* <div className='absolute bottom-10 left-0 w-full  h-10 bg-transparent text-white font-semibold z-10 text-center text-2xl hidden md:block  '>
         Active Users
-      </div>
+      </div> */}
 
       <MapContainer
         ref={mapRef}
@@ -173,23 +180,33 @@ const MapComponent: React.FC = () => {
 
       </MapContainer>
 
-      <div className='hidden absolute h-32 w-52 p-2 bottom-8 left-5 border-2 rounded-md bg-opacity-40 bg-slate-300 text-black font-semibold z-10 text-xs text-justify '>
-        <ul>
+      <div className=' absolute h-initial w-initial p-2 bottom-8 left-5 border-2 rounded-md bg-opacity-90 bg-slate-200 text-black font-semibold z-10 text-xs text-justify '>
+        <ul className=''>
           <li className="inline-flex items-center">
-            Cable Routes:
-            <img src={locationBlue} alt="Location" className="h-4 w-4" />
+          <span className="mr-2">&#8226;</span>
+            Main Cable Routes:
+            <div className='h-1 w-8 rounded-full bg-yellow-500 ml-1'></div>
           </li><br />
           <li className="inline-flex items-center">
+          <span className="mr-2">&#8226;</span>
+            Main to user cable:
+            <div className='h-1 w-8 rounded-full bg-white ml-1'></div>
+          </li><br />
+          <li className="inline-flex items-center">
+          <span className="mr-2">&#8226;</span>
             Users:
             <img src={locationBlue} alt="Location" className="h-4 w-4 ml-1" />
             <img src={locationRed} alt="Location" className="h-4 w-4 ml-1" />
           </li><br />
           <li className="inline-flex items-center">
+          <span className="mr-2">&#8226;</span>
             Splitter:
-            <img src={splittericon} className="h-4 w-4 ml-1" />
+            <img src={splittericon} className="h-5 w-5 ml-1" />
           </li><br />
           <li className="inline-flex items-center">
+          <span className="mr-2">&#8226;</span>
             My Location:
+            <img src={myLocationDot} className="h-7 w-7 ml-1" />
           </li>
         </ul>
       </div>
