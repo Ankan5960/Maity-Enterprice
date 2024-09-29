@@ -9,7 +9,8 @@ import { SplitterLocations } from './logics/splitter-location';
 import locationBlue from '../../../assets/icons/Png/locationBlue.png';
 import locationRed from '../../../assets/icons/Png/locationRed1.png';
 import splittericon from '../../../assets/icons/Png/splliter1.png';
-import MyLocationIcon from '../../../assets/icons/tsx-componet-icon/my-location-icon';
+import MyLocationicon from '../../../assets/icons/tsx-componet-icon/my-location-icon';
+import HomeIcon from '../../../assets/icons/tsx-componet-icon/home-icon';
 
 // Custom icon for user location
 const userIcon = new L.Icon({
@@ -26,6 +27,12 @@ const RedUserIcon = new L.Icon({
   popupAnchor: [0, -25], // Popup anchor: [0, -41] ensures the popup appears right above the marker icon
 });
 
+const MyLocationIcon = new L.Icon({
+  iconUrl: require('../../../assets/icons/Png/myLocation.png'), // Path to the marker icon
+  iconSize: [35, 35], // Icon size: the default is [25, 41] for this marker
+  iconAnchor: [11, 20], // Anchor: This keeps the bottom of the icon at the location (horizontal center at [12], bottom at [41])
+  popupAnchor: [0, -25], // Popup anchor: [0, -41] ensures the popup appears right above the marker icon
+});
 
 const splitterIcon = new L.Icon({
   iconUrl: require('../../../assets/icons/Png/splliter1.png'), // Path to the marker icon
@@ -80,12 +87,21 @@ const LocateUser: React.FC<{ setMyLocation: (coords: LatLngTuple) => void }> = (
   };
 
   return (
-    <button
-      className="bg-transparent bg-slate-100 text-black hover:bg-slate-300 p-1 rounded-md shadow-md"
-      onClick={handleLocateClick}
-    >
-      <MyLocationIcon className="w-7 h-7 fill-blue-600" />
-    </button>
+    <>
+      <button
+        className="bg-transparent bg-slate-100 text-black hover:bg-slate-300 p-1 rounded-md shadow-md"
+        onClick={handleLocateClick}
+      >
+        <MyLocationicon className="w-7 h-7 fill-blue-600" />
+      </button>
+      {/* <button
+        className="bg-transparent bg-slate-100 text-black hover:bg-slate-300 p-1 rounded-md shadow-md"
+        onClick={() => map.flyTo([22.88046552762111, 87.30577340556309], 17)}
+      >
+        <HomeIcon className="w-7 h-7 fill-blue-600" />
+      </button> */}
+    </>
+    
   );
 };
 
@@ -94,6 +110,7 @@ const MapComponent: React.FC = () => {
   const [MyLocation, setMyLocation] = useState<LatLngTuple | null>(null);
   const mapRef = useRef(null)
   const [details, setDetails] = useState<any>(null);
+  
 
   return (
     <div className="w-full h-full py-4 px-2 relative ">
@@ -138,7 +155,7 @@ const MapComponent: React.FC = () => {
 
         {/* My Location Marker */}
         {MyLocation && (
-          <Marker position={MyLocation} icon={userIcon}>
+          <Marker position={MyLocation} icon={MyLocationIcon}>
             <Popup>Your Location</Popup>
           </Marker>
         )}
@@ -150,7 +167,7 @@ const MapComponent: React.FC = () => {
         ))
         }
 
-        <div style={{ position: 'absolute', bottom: '25px', right: '10px', zIndex: 1000 }}>
+        <div style={{ position: 'absolute', bottom: '25px', right: '10px', zIndex: 1000, backgroundColor: 'white', borderRadius: '5px' }}>
           <LocateUser setMyLocation={setMyLocation} />
         </div>
 
