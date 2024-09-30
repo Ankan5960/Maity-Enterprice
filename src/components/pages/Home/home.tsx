@@ -142,7 +142,7 @@ const Home: React.FC = () => {
                   </NavLink>
                 </div>
 
-                <div className="relative z-20 mx-auto px-6 py-10">
+                <div className="relative mx-auto px-6 py-10">
                   <h3 className="text-sm sm:text-xl md:text-2xl font-semibold text-white text-center mb-12">Why Choose Us</h3>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <div className="bg-white p-6 shadow-md rounded-lg">

@@ -33,7 +33,7 @@ const AlertBox: React.FC<AlertBoxProps> = ({ message, type, onClose }) => {
     <CSSTransition in={show} timeout={300} classNames="alert" unmountOnExit>
       <div>
         <div
-          className={`fixed bottom-3 border-2 bg-opacity-40 backdrop-blur-md ${type === 'success' ? 'border-green-300' : ''} ${type === 'error' ? 'border-red-300' : ''} ${type === 'waiting' ? 'border-yellow-300' : ''} left-1/2 transform -translate-x-1/2 p-4 rounded-lg shadow-lg w-full max-w-sm ${
+          className={`fixed z-[9999] bottom-3 border-2 bg-opacity-40 backdrop-blur-md ${type === 'success' ? 'border-green-300' : ''} ${type === 'error' ? 'border-red-300' : ''} ${type === 'waiting' ? 'border-yellow-300' : ''} left-1/2 transform -translate-x-1/2 p-4 rounded-lg shadow-lg w-full max-w-sm ${
             type === 'success' ? 'bg-green-500' : ''} ${type === 'error' ? 'bg-red-500' : ''} ${type === 'waiting' ? 'bg-yellow-500' : ''} text-gray-600 text-center justify-between items-center`}
         >
           <span >{message}</span>
