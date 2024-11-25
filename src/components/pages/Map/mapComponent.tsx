@@ -1,10 +1,13 @@
 import React, { useRef, useState } from 'react';
+
 import { MapContainer, TileLayer, Marker, Popup, Polyline, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
-import L, { LatLngTuple } from 'leaflet';
+import L, { LatLngTuple} from 'leaflet';
+import 'leaflet-routing-machine';
+
 import MainCableRoutes from './logics/main-cable-route';
-import { userLocations, UsertoMainCableRoutes } from './logics/user-location';
-import { SplitterLocations } from './logics/splitter-location';
+import { userLocations , UsertoMainCableRoutes} from './logics/user-location';
+import { Splitters } from './logics/splitter-location';
 import locationBlue from '../../../assets/icons/Png/locationBlue.png';
 import locationRed from '../../../assets/icons/Png/locationRed1.png';
 import splittericon from '../../../assets/icons/Png/splliter1.png';
@@ -12,6 +15,7 @@ import myLocationDot from '../../../assets/icons/Png/myLocation.png';
 import MyLocationicon from '../../../assets/icons/tsx-componet-icon/my-location-icon';
 import HomeIcon from '../../../assets/icons/tsx-componet-icon/home-icon';
 import AlertBox from '../../Alert-box/alert-box-component';
+import {MyloctionToNearestSplitter} from './logics/engines';
 
 // Custom icon for user location
 const userIcon = new L.Icon({
@@ -53,40 +57,46 @@ const LocateUser: React.FC<{ setMyLocation: (coords: LatLngTuple) => void }> = (
   const [errorAlertMessage, setErrorAlertMessage] = useState<string | null>(null);
   const [successAlertMessage, setSuccessAlertMessage] = useState<string | null>(null);
 
-  const handleLocateClick = () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const { latitude, longitude } = position.coords;
-          const userCoords: LatLngTuple = [latitude, longitude];
+  // L.Routing.control({
+  //   waypoints: [
+  //       L.latLng(57.74, 11.94),
+  //       L.latLng(57.6792, 11.949)
+  //     ]
+  // }).addTo(map);
 
-          map.flyTo(userCoords, 17);
-          setMyLocation(userCoords);
+  const handleLocateClick = async () => {
+    if (!navigator.geolocation) {
+      setErrorAlertMessage('Geolocation is not supported by your browser');
+      return;
+    }
+    try {
+      const position = await new Promise<GeolocationPosition>((resolve, reject) => {
+        navigator.geolocation.getCurrentPosition(resolve, reject, {
+          enableHighAccuracy: true,
+          timeout: 5000,
+          maximumAge: 0,
+        });
+      });
+      const { latitude, longitude } = position.coords;
+      const userCoords: LatLngTuple = [latitude, longitude];
 
-          // Check if the user's location is within the defined area
-          if (
-            latitude >= minLat &&
-            latitude <= maxLat &&
-            longitude >= minLng &&
-            longitude <= maxLng
-          ) {
-            setErrorAlertMessage(null); // Reset alert message if within bounds
-            setSuccessAlertMessage('Your location is within the specified area'); // Show the alert box
-          } else {
-            setErrorAlertMessage('Your location is outside the specified area'); // Show the alert box
-          }
-        },
-        () => {
-          setErrorAlertMessage('Unable to retrieve your location'); // Show error if location cannot be retrieved
-        },
-        {
-          enableHighAccuracy: true, // Request more accurate location
-          timeout: 5000,            // Optional: Set a timeout for the request
-          maximumAge: 0             // Optional: Don't use cached position
-        }
-      );
-    } else {
-      setErrorAlertMessage('Geolocation is not supported by your browser'); // Show error if Geolocation is not supported
+      map.flyTo(userCoords, 17);
+      setMyLocation(userCoords);
+
+      if (latitude >= minLat && latitude <= maxLat && longitude >= minLng && longitude <= maxLng) {
+        setErrorAlertMessage(null);
+        setSuccessAlertMessage('Your location is within the specified area');
+      } else {
+        setErrorAlertMessage('Your location is outside the specified area');
+      }
+
+      const targetLocation = await MyloctionToNearestSplitter(userCoords);
+
+      L.Routing.control({
+        waypoints: [L.latLng(userCoords), L.latLng(targetLocation)],
+      }).addTo(map);
+    } catch (error) {
+      setErrorAlertMessage('Unable to retrieve your location');
     }
   };
 
@@ -171,9 +181,9 @@ const MapComponent: React.FC = () => {
           </Marker>
         )}
         {/* Splitter Markers */}
-        {SplitterLocations.map((location, index) => (
-          <Marker key={index} position={location} icon={splitterIcon}>
-            <Popup>Splitter-{index + 1}</Popup>
+        {Splitters.map((location, index) => (
+          <Marker key={index} position={location.coordinates} icon={splitterIcon}>
+            <Popup>Splitter-{location.id}</Popup>
           </Marker>
         ))
         }

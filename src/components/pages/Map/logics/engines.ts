@@ -1,7 +1,7 @@
 import { LatLngTuple } from "leaflet";
 import MainCableRoutes from "./main-cable-route";
 import {userLocations} from "./user-location";
-import { SplitterLocations } from "./splitter-location";
+import { Splitters } from "./splitter-location";
 
 // Function to calculate the distance between two points (Haversine formula)
 export const calculateDistance=(pointA: LatLngTuple, pointB: LatLngTuple): number =>{
@@ -52,4 +52,21 @@ export const findBestRoute=()=> {
     return UsertoMainCableRoutes;
   }
 
-  
+export const MyloctionToNearestSplitter= async(Mylocation:LatLngTuple): Promise<LatLngTuple> => {
+  let minDistance=Infinity;
+  let nearestSplitter:LatLngTuple=Splitters[0].coordinates;
+
+  for(let i=0;i<Splitters.length;i++){
+    const distance=calculateDistance(Mylocation,Splitters[i].coordinates);
+    if(distance<minDistance)
+    {
+      minDistance=distance;
+      nearestSplitter=Splitters[i].coordinates;
+    }
+  }
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(nearestSplitter); // Mock splitter location
+    }, 100); // Simulate async operation
+  });
+}
